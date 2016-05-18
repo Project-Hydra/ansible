@@ -3,4 +3,4 @@
   user: root
 
   tasks:
-  - user: name=ansible comment="ansible user admin account" group=wheel
+  - user: name=jmoney comment="ansible user admin account" group=wheel
