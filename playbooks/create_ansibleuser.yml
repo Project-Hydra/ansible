@@ -1,5 +1,5 @@
 ---
-- hosts: ansiblenodes
+- hosts: Web Servers
   user: root
 
   tasks:
