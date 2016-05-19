@@ -7,7 +7,7 @@
 
 - name: NTP autostart
   sudo: true
-  service: name=ntp enabled=yes
+  service: name=ntpd enabled=yes
 
 - name: Configure NTP
   sudo: true
