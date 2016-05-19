@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: web_servers
 
   tasks:
   - user: name=jmoney comment="ansible user admin account" group=wheel
