@@ -1,2 +1,15 @@
 ---
 # tasks file for base
+
+- name: Install NTP daemon
+  sudo: true
+  yum: name=ntp state=installed
+
+- name: NTP autostart
+  sudo: true
+  service: name=ntp enabled=yes
+
+- name: Configure NTP
+  sudo: true
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify: Restart NTP daemon
