@@ -9,7 +9,7 @@
   sudo: true
   service: name=ntpd enabled=yes
 
-- name: Configure NTP
+- name: Copy ntp.conf
   sudo: true
   template: src=ntp.conf.j2 dest=/etc/ntp.conf
-  notify: Restart NTP daemon
+  notify: restart ntp
