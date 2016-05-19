@@ -1,6 +1,6 @@
 ---
 # handlers file for base
 
-name: Restart NTP daemon
-sudo: true
-service: name=ntpd state=restarted
+- name: Restart NTP daemon
+  sudo: true
+  service: name=ntpd state=restarted
