@@ -20,4 +20,4 @@
 
 - name: Distribute ansible user public key
   sudo: true
-  authorized_key: user=ansible key="{{ lookup('file', '/home/ansible/.ssh/ansible.pub') }}"
+  authorized_key: user=ansible key="{{ lookup('file', 'ansible.pub') }}"
