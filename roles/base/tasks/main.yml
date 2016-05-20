@@ -18,6 +18,6 @@
   sudo: true
   user: name=ansible comment="ansible service account" group=wheel
 
-  -name: Distribute ansible user public key
-   sudo true
-   copy src=authorized_keys dest=/home/ansible/.ssh
+- name: Distribute ansible user public key
+  sudo: true
+  authorized_key: user=ansible key="{{ lookup('file', '/home/ansible/ansible.pub') }}
