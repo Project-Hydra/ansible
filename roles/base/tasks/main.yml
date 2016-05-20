@@ -19,5 +19,5 @@
   user: name=ansible comment="ansible service account" group=wheel
 
 - name: Distribute ansible user public key
-  sudo true
+  sudo: true
   authorized_key: user=ansible key="{{ lookup('file', '/home/ansible/ansible.pub') }}
