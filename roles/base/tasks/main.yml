@@ -14,10 +14,10 @@
   template: src=ntp.conf.j2 dest=/etc/ntp.conf
   notify: restart ntp
 
-- name: Create Ansible service account
+- name: Create ansible service account
   sudo: true
   user: name=ansible comment="ansible service account" group=wheel
 
 - name: Distribute ansible user public key
   sudo: true
-  authorized_key: user=ansible key="{{ lookup('file', '/home/ansible/ansible.pub') }}
+  authorized_key: user=ansible key="{{ lookup('file', '/home/ansible/ansible.pub') }}"
