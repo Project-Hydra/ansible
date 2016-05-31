@@ -4,6 +4,10 @@
   action: file path=/etc/ssh/authorized_keys state=directory
     owner=0 group=0 mode=0755
 
+- name: create ssh users
+  - user: name={{ item }} group=wheel
+  with_items: sshusers
+
 - name: upload user key
   action: copy src=authorized_keys/{{ item }}
     dest=/etc/ssh/authorized_keys/
