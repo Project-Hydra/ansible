@@ -5,7 +5,7 @@
     owner=0 group=0 mode=0755
 
 - name: create ssh users
-  - user: name={{ item }} group=wheel
+  user: name="{{ item }}" group=wheel
   with_items: sshusers
 
 - name: upload user key
