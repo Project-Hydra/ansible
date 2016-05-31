@@ -1,5 +1,6 @@
 ---
 - hosts: clt-tower01-h.labclt.local
+  connection: local
   sudo_user: root
 
   tasks:
