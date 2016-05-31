@@ -1,6 +1,5 @@
----
 # tasks file for update-sshKeys
----
+
 - name: create key directory
   action: file path=/etc/ssh/authorized_keys state=directory
     owner=0 group=0 mode=0755
@@ -19,7 +18,3 @@
     validate='/usr/sbin/sshd -T -f %s'
   notify:
   - restart sshd
-
-handlers:
-  - name: restart sshd
-    service: name=sshd state=restarted
