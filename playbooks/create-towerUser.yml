@@ -1,5 +1,6 @@
 ---
 - hosts: clt-tower01-h.labclt.local
-
+  sudo_user: root
+  
   tasks:
   - user: name='{{ user }}' comment="admin account for ansible management server" createhome=yes generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
