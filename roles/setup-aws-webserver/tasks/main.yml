@@ -2,6 +2,7 @@
 # tasks file for setup-aws-webserver
 
 - name: Install http and php etc
+  sudo: true
   yum: name={{ item }} state=present
   with_items:
    - httpd
@@ -12,34 +13,42 @@
    - libselinux-python
 
 - name: Install ntp
+  sudo: true
   yum: name=ntp state=present
   tags: ntp
 
 - name: Configure ntp file
+  sudo: true
   template: src=ntp.conf.j2 dest=/etc/ntp.conf
   tags: ntp
   notify: restart ntp
 
 - name: Start the ntp service
+  sudo: true
   service: name=ntpd state=started enabled=yes
   tags: ntp
 
 - name: test to see if selinux is running
+  sudo: true
   command: getenforce
   register: sestatus
   changed_when: false
 
 - name: insert iptables rule for httpd
+  sudo: true
   lineinfile: dest=/etc/sysconfig/iptables create=yes state=present regexp="{{ httpd_port }}" insertafter="^:OUTPUT "
               line="-A INPUT -p tcp  --dport {{ httpd_port }} -j  ACCEPT"
   notify: restart iptables
 
 - name: http service state
+  sudo: true
   service: name=httpd state=started enabled=yes
 
 - name: Configure SELinux to allow httpd to connect to remote database
+  sudo: true
   seboolean: name=httpd_can_network_connect_db state=true persistent=yes
   when: sestatus.rc != 0
 
 - name: 4. copy web files
+  sudo: true
   copy: src=/etc/ansible/roles/setup-aws-webserver/files/web_content/ dest=/var/www/html/ mode=0664
