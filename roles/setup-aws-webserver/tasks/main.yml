@@ -34,12 +34,6 @@
   register: sestatus
   changed_when: false
 
-- name: insert iptables rule for httpd
-  sudo: true
-  lineinfile: dest=/etc/sysconfig/iptables create=yes state=present regexp="{{ httpd_port }}" insertafter="^:OUTPUT "
-              line="-A INPUT -p tcp  --dport {{ httpd_port }} -j  ACCEPT"
-  notify: restart iptables
-
 - name: http service state
   sudo: true
   service: name=httpd state=started enabled=yes
