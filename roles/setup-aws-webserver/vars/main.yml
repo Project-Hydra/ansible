@@ -1,2 +1,5 @@
 ---
 # vars file for setup-aws-webserver
+
+httpd_port: 80
+ntpserver: us.pool.ntp.org
