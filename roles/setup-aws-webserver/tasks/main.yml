@@ -1,14 +1,27 @@
 ---
 # tasks file for setup-aws-webserver
 
-    - name: 1. install Apache
-      apt: name=apache2 state=present
+- name: Install http and php etc
+  yum: name={{ item }} state=present
+  with_items:
+   - httpd
+   - php
+   - php-mysql
+   - git
+   - libsemanage-python
+   - libselinux-python
 
-    - name: 2. install PHP module for Apache
-      apt: name=libapache2-mod-php5 state=present
+- name: insert iptables rule for httpd
+  lineinfile: dest=/etc/sysconfig/iptables create=yes state=present regexp="{{ httpd_port }}" insertafter="^:OUTPUT "
+              line="-A INPUT -p tcp  --dport {{ httpd_port }} -j  ACCEPT"
+  notify: restart iptables
 
-    - name: 3. start Apache
-      service: name=apache2 state=running enabled=yes
+- name: http service state
+  service: name=httpd state=started enabled=yes
 
-    - name: 4. copy web files
-      copy: src=/etc/ansible/roles/setup-aws-webserver/files/web_content/ dest=/var/www mode=0664
+- name: Configure SELinux to allow httpd to connect to remote database
+  seboolean: name=httpd_can_network_connect_db state=true persistent=yes
+  when: sestatus.rc != 0
+
+- name: 4. copy web files
+  copy: src=/etc/ansible/roles/setup-aws-webserver/files/web_content/ dest=/var/www/html/ mode=0664
