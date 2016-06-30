@@ -1,2 +1,8 @@
 ---
 # vars file for update-sshKeys
+#users who get SSH access to these machines
+sshusers:
+  - mvalencia
+  - jcoen
+  - ansible
+  - newemployee

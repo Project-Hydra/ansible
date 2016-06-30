@@ -1,0 +1,4 @@
+---
+- hosts: vra_webservers
+  roles:
+    - setup-aws-webserver
