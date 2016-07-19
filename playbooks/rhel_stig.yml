@@ -1,4 +1,3 @@
 - hosts: all
   roles:
     - STIG-RHEL6
-    when: ansible_distribution == "CentOS" and ansible_distribution_version >= '6' and ansible_distribution_version < '7'
