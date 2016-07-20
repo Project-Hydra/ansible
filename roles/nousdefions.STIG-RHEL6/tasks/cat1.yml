@@ -86,11 +86,6 @@
   rpm_key: state=present key={{ gpg_key_url }}
   tags: [ 'cat1' , 'V-38476' , 'rpm' ]
 
-- name: V-38607 High  The SSH daemon must be configured to use only the SSHv2 protocol
-  lineinfile: state=present dest=/etc/ssh/sshd_config regexp='^(#)?Protocol \d' line='Protocol 2'
-  notify: restart ssh
-  tags: [ 'ssh' , 'cat1' , 'V-38607' , 'ssh' ]
-
 
 - name: Check status of rsh
   shell: chkconfig --list | grep rsh
