@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  become: true
   roles:
     - role: nousdefions.STIG-RHEL6
       when: ansible_distribution_version >= '6' and ansible_distribution_version < '7'
