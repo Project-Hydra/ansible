@@ -48,10 +48,6 @@
   tags: [ 'cat1' , 'V-38666' , 'antivirus' ]
 
 
-- name: V-38668 High  The x86 Ctrl-Alt-Delete key sequence must be disabled
-  copy: src=control-alt-delete.override dest=/etc/init/control-alt-delete.override owner=root group=root mode=0644
-  tags: [ 'cat1' , 'V-38668' , 'ctrl_alt_delete' ]
-
 - name: V-38462 High  The RPM package management tool must cryptographically verify the authenticity of all software packages during installation
   lineinfile: state=absent dest={{ item }} regexp=nosignature
   with_items:
