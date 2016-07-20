@@ -154,7 +154,3 @@
   tags: [ 'cat1' , 'V-38701' , 'tftp' , 'tftp-server' , 'unsecure_services' ]
   notify: reload xinetd
 
-- name: V-38614 High  The SSH daemon must not allow authentication using an empty password
-  lineinfile: state=present dest=/etc/ssh/sshd_config regexp='^(#)?PermitEmptyPasswords' line='PermitEmptyPasswords no'
-  tags: [ 'ssh' , 'cat1' , 'V-38614' , 'ssh' ]
-  notify: restart ssh
